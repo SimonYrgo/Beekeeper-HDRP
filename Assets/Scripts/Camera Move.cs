@@ -48,7 +48,7 @@ public class CameraMove : MonoBehaviour
             Vector3 desiredRotation = new Vector3(newRotationY, newRotationX, 0);
             transform.localEulerAngles = desiredRotation;
             //// ta floaterna ovan och bygg ny vektor array av. Jag kommenterade ut newRotationY ovan för tyckte det var lite rörigt med upp/ner funktionen. 
-
+            target.transform.eulerAngles = desiredRotation;
 
 
 
