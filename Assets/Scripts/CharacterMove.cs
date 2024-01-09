@@ -18,6 +18,9 @@ public class CharacterMove : MonoBehaviour
     private int lastRandomInt = 0;  // Detta lagrar värdet av int r i Hamburger-scriptet för att jämföra
                                     // så man inte slumpar samma tal 2 ggr i rad. 
 
+    public bool isMoving = false;
+    
+
     void Start()
     {
         body = GetComponent<Rigidbody>();
@@ -30,12 +33,23 @@ public class CharacterMove : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal"); // kollar A och D tangenter och gör till -1, 0, 1 värden av input -1 vänster 0 stilla , 1 höger
         vertical = Input.GetAxisRaw("Vertical"); // kollar ws tangenter och ger värde -1, 0, 1 
        
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) // Har kvar dessa rader som referens för input.Keycode och spela ljud
         {
             body.AddForce(Vector3.up * 500);
-            jumpSound.Play();
-            
+            // jumpSound.Play();    
         }
+        
+        if (horizontal == 0 && vertical == 0) 
+        {
+            isMoving = false;
+            Debug.Log(" isMoving:" + isMoving);
+        }
+        else
+        {
+            isMoving = true;
+            Debug.Log(" isMoving:" + isMoving);
+        }
+
     }
 
     private void FixedUpdate()
