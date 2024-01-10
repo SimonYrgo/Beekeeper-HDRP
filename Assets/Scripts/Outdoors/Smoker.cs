@@ -22,7 +22,7 @@ public class Smoker : MonoBehaviour
 
     bool pickUpAble;
 
-    bool grabbed;
+    public bool grabbed;    // Bytte denna till public 
 
     public bool smokerLighted; // kan kanske användas senare
 
@@ -50,8 +50,13 @@ public class Smoker : MonoBehaviour
 
     public GameObject smoker; // skapar slot för smoker för att kunna manipulera dess tranform sen
 
-    // public WindZone windSmoke;
 
+
+    public GameObject blenderSmoker; // Testar att skapa en slot för att kunna stänga av Meshrendern i BlenderSmoker FBX objektet. 
+
+      // public WindZone windSmoke;
+
+  
     private Rigidbody smokerRb; // måste skapa en Rigidbody-variabel för att kunna hänvisa till smoker Rigidbody
 
     private Collider smokerCollider;
@@ -123,6 +128,8 @@ public class Smoker : MonoBehaviour
                 grabbed = true;              //  > sätt grabbed till True
 
                 soundPlayer.PlayOneShot(soundLibrary.soundsLevel1[0]);
+
+            
             }
         }
 
@@ -135,12 +142,17 @@ public class Smoker : MonoBehaviour
 
             // Grabfunktionen nedan skulle kunna vara en metod utanför update,  som man bara kallar en gång? 
 
+            // Invoke("DelayedSmokerTransformSwitch", 10f); // Gör ett delay så att pickupanimationen hinner spelas om det behövs. Koden nedan som användes till att byta transform på smokern är nu i metoden som kallas
+
+            
             smokerRb.transform.position = grabbingPointTransform.position;   // gör samma som min kod tror jag 
             smokerRb.transform.rotation = grabbingPointTransform.rotation;   // gör samma som min kod tror jag 
             smoker.transform.parent = grabbingPointTransform;                // Sätter boxLid som child till parent, varför vet jag inte riktigt än varför det skulle vara bra
             smokerRb.isKinematic = true;                                     // Sätter boxlid till Kinematic = den har ingen graivty och kan inte flyttas av collisions
             smokerCollider.isTrigger = true;                                 // Förutom att göra till en Trigger -  har ingen fysik och kan inte flytta saker? .. > 
                                                                              // > ..  = om jag har den här på smokerscriptet så kommer den inet att flytta på mig. 
+
+            blenderSmoker.GetComponentInChildren<Renderer>().enabled = false; // stänger av Meshrenderen på blenderSmokern
 
 
             if (Input.GetKeyDown(KeyCode.L))                                // Drar igång smokeParticleSystem och sätter boolen smokerLighted till true
@@ -190,6 +202,10 @@ public class Smoker : MonoBehaviour
 
                     smokerDropped = true;
 
+
+                    blenderSmoker.GetComponentInChildren<Renderer>().enabled = true; // sätter på Meshrenderen på blenderSmokern
+
+
                     doorInteract.doorCanOpen = true;
 
                     messageBoard.text = "Open Door to Shed with Q";
@@ -235,6 +251,23 @@ public class Smoker : MonoBehaviour
         }
 
     }
+
+    /*
+    private void DelayedSmokerTransformSwitch() // byter Transform på smokern till grabbing pointens mm
+    {
+        blenderSmoker.GetComponentInChildren<Renderer>().enabled = false; // stänger av Meshrenderen på blenderSmokern
+
+        
+
+        smokerRb.transform.position = grabbingPointTransform.position;   // gör samma som min kod tror jag 
+        smokerRb.transform.rotation = grabbingPointTransform.rotation;   // gör samma som min kod tror jag 
+        smoker.transform.parent = grabbingPointTransform;                // Sätter boxLid som child till parent, varför vet jag inte riktigt än varför det skulle vara bra
+        smokerRb.isKinematic = true;                                     // Sätter boxlid till Kinematic = den har ingen graivty och kan inte flyttas av collisions
+        smokerCollider.isTrigger = true;                                 // Förutom att göra till en Trigger -  har ingen fysik och kan inte flytta saker? .. > 
+                                                                         // > ..  = om jag har den här på smokerscriptet så kommer den inet att flytta på mig. 
+    }
+
+    */
 
     /*
 

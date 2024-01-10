@@ -3,7 +3,22 @@ guid: 70244e8ffac176846b6285f1360f49b1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bubble Tea
+    second: {fileID: 2100000, guid: 0300ed0c5a18e3a42a9159aafeb134bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Orange Mat
+    second: {fileID: 2100000, guid: 95fccd25bb1325d4b8e4f532f0b3b455, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood.001
+    second: {fileID: 2100000, guid: 7960dc692db96334483c34b84c8f2fa0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

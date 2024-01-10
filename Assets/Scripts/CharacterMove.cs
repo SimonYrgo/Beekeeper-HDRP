@@ -42,12 +42,12 @@ public class CharacterMove : MonoBehaviour
         if (horizontal == 0 && vertical == 0) 
         {
             isMoving = false;
-            Debug.Log(" isMoving:" + isMoving);
+            // Debug.Log(" isMoving:" + isMoving);
         }
         else
         {
             isMoving = true;
-            Debug.Log(" isMoving:" + isMoving);
+            // Debug.Log(" isMoving:" + isMoving);
         }
 
     }

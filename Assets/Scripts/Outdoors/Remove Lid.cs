@@ -118,11 +118,11 @@ public class RemoveLid : MonoBehaviour
             boxLidRb.isKinematic = true;                                     // Sätter boxlid till Kinematic = den har ingen graivty och kan inte flyttas av collisions
             boxLidCollider.isTrigger = true;                                 // Förutom att göra till en Trigger -  har ingen fysik och kan inte flytta saker? = om jag har den här på smokerscriptet så kommer den inet att flytta på mig. 
 
-           
+            boxLid.GetComponentInChildren<Renderer>().enabled = false; // Slår av boxLids meshRenderer när den blir grabbed, eftersom den ska ersättas av animation
 
             // boxLidRb.useGravity = false; // Om den är trigger har den ingen gravity. 
 
-            
+
 
             if (Input.GetKeyDown(KeyCode.E) && canDropLid) // funktion för att släppa boxLid på marken när man gått ur TriggerCollidern vid kupan
             {
@@ -145,6 +145,8 @@ public class RemoveLid : MonoBehaviour
                                                           // .. Kan ju också förstöra textPanelerna eter hand men då får man kanske error om man inte kör Try Set Active el liknande. 
 
                 lidDropped = true; // testar detta så kan jag behålla Collidern på istället. 
+
+                boxLid.GetComponentInChildren<Renderer>().enabled = true; // Sätter tillbaka boxLids meshRenderer när den blir dropped, eftersom Lid Carry Walk animation ska ta slut då
 
                 soundPlayer.PlayOneShot(soundLibrary.soundsLevel1[1]);
             }

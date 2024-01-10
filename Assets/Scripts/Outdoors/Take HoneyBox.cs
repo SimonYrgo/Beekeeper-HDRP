@@ -10,7 +10,7 @@ public class TakeHoneyBox : MonoBehaviour
 
     bool pickUpAble = false;
 
-    bool grabbed = false;
+    public bool grabbed = false; // Gör public så Honeybox Kombo Animator scriptet kan komma åt
 
     public TMP_Text messageBoard;
 
@@ -72,7 +72,7 @@ public class TakeHoneyBox : MonoBehaviour
             honeyBoxRb.isKinematic = true;                                     // Sätter boxlid till Kinematic = den har ingen graivty och kan inte flyttas av collisions
             honeyBoxCollider.isTrigger = true;                                 // Förutom att göra till en Trigger -  har ingen fysik och kan inte flytta saker? = om jag har den här på smokerscriptet så kommer den inet att flytta på mig. 
 
-
+            honeyBox.GetComponentInChildren<Renderer>().enabled = false; // testar att stänga av Mehsrenderen här när jag lpockar upp objektet
         }
     }
 
